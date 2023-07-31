@@ -1,0 +1,7 @@
+# Drupal Variables
+
+drupal_version: 10.1.0
+drupal_site_path: "/var/www"
+drupal_site_name: "My Drupal Site"
+drupal_admin_username: admin
+drupal_admin_pass: StrongPass

@@ -1,0 +1,13 @@
+---
+
+- hosts: 127.0.0.1
+  connection: local
+  become: true
+  debugger: on_failed
+  roles:
+    - update
+    - cloudwatch
+    - php
+    - drupal
+    - nginx
+

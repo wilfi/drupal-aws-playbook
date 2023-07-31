@@ -1,0 +1,25 @@
+---
+
+- name: Add repositories
+  apt_repository: repo='ppa:ondrej/php' state=present update_cache=yes
+
+- name: Install php with all packages
+  package: name={{ item }} state=present
+  with_items:
+    - php8.1
+    - php8.1-curl
+    - php8.1-gd
+    - php8.1-cli
+    - php8.1-mysql
+    - php8.1-xml
+    - php8.1-mbstring
+    - php8.1-fpm
+    - php8.1-intl
+    - php8.1-zip
+    - php8.1-xsl
+
+- name: start and enable service
+  service: name=php8.1-fpm state=started enabled=yes
+
+- name: restart php8.1-fpm
+  service: name=php8.1-fpm state=restarted
