@@ -1,22 +1,22 @@
 ---
-- name: install the latest Composer
+- name: Composer install
   shell: curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer warn=False
   args:
     creates: /usr/local/bin/composer
 
-- name: install git
+- name: GIT Install
   package: name=git state=latest
 
-- name: clone Drush repository
+- name: Clone Drush repository
   git:
     repo: https://github.com/drush-ops/drush.git
     version: "12.1.2"
     dest: /opt/drush
 
-- name: install mysql client
+- name: Install MySQL Client
   package: name=mysql-client state=present
 
-- name: create the Drupal install directory
+- name: Create Drupal install path
   file:
     path: "{{ drupal_site_path }}"
     state: directory
@@ -30,13 +30,13 @@
     state: directory
     recurse: yes
 
-- name: install Drupal dependencies with Composer
+- name: Create Drupal Recommended project
   shell: composer create-project drupal/recommended-project drupal
   become_user: ansible
   args:
     chdir: "{{ drupal_site_path }}"
 
-- name: Full permissions for drupal
+- name: Full permissions for Drupal project
   file:
     path: "{{ drupal_site_path }}/drupal"
     owner: ansible
@@ -45,7 +45,7 @@
     state: directory
     recurse: yes
 
-- name: Install drush and update
+- name: Install Drush and update
   shell: |
     composer require --dev drush/drush --no-interaction
     composer update --no-interaction

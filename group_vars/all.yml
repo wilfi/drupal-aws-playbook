@@ -5,3 +5,7 @@ drupal_site_path: "/var/www"
 drupal_site_name: "My Drupal Site"
 drupal_admin_username: admin
 drupal_admin_pass: StrongPass
+
+cloud_init_output_log: "/var/log/cloud-init-output.log"
+nginx_error_log: "/var/log/nginx/error.log"
+nginx_access_log: "/var/log/nginx/access.log"

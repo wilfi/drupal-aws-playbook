@@ -1,23 +1,27 @@
 ---
-- name: Download cw agent
+- name: Download CW Agent
   shell: wget https://s3.amazonaws.com/amazoncloudwatch-agent/debian/amd64/latest/amazon-cloudwatch-agent.deb
   args:
     chdir: "/"
 
-- name: Install cw agent
+- name: Install CW Agent
   shell: dpkg -i -E ./amazon-cloudwatch-agent.deb
   become: true
   args:
     chdir: "/"
 
-- name: Generate new configs
+- name: Generate New CW Configs
   template:
     src: config.json
     dest: /opt/aws/amazon-cloudwatch-agent/bin/config.json
     owner: root
     group: root
+  vars:
+    cloutInitOutputLog: "{{ cloud_init_output_log }}"
+    nginxErrorLog: "{{ nginx_error_log }}"
+    nginxAccessLog: "{{ nginx_access_log }}"
 
-- name: Fetch config and start the agent
+- name: Fetch the config and start the agent
   shell: /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c file:/opt/aws/amazon-cloudwatch-agent/bin/config.json -s
   become: true
   args:
