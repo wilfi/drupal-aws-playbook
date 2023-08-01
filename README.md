@@ -2,7 +2,7 @@
 
 This repository contains a starter Ansible playbook to host a Drupal on Amazon Linux. 
 
-The playbook can be used to perform the task on a `cloud-init` 
+The playbook can be used to perform the task on a `cloud-init` or by installing Ansible on your instance.
 
 Refer https://github.com/wilfi/terraform-get-started.git
 
